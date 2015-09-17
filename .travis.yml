@@ -8,7 +8,7 @@ python:
 
 install:
   - sudo apt-get install -qq libeigen3-dev
-  - pip install cython==0.19.2 --use-mirrors
+  - pip install Cython --use-mirrors
   - cython --version
 
 script:

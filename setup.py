@@ -23,6 +23,7 @@ setup(
     include_dirs=['/usr/include/eigen3'],  # default overridable by setup.cfg
     cflags=['-O2', '-march=native', '-fopenmp'],  # ditto
     ldflags=['-fopenmp'],  # ditto
+    install_requires=['Cython>=0.22'],
     name='Ceygen',
     version="0.4-pre",
     author='Matěj Laitl',
