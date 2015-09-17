@@ -3,9 +3,12 @@
 # Copyright (c) 2013 Matěj Laitl <matej@laitl.cz>
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
-from Cython.Build import cythonize
 from setuptools import setup, find_packages
 from os.path import dirname, join
+import multiprocessing
+
+from Cython.Build import cythonize
+
 
 from support.dist import CeygenDistribution
 
@@ -16,7 +19,7 @@ setup(
     packages=find_packages(),
     distclass=CeygenDistribution,
     ext_modules=cythonize(['ceygen/*.pyx', 'ceygen/tests/*.pyx'],
-                          language='c++'),
+                          language='c++', nthreads=multiprocessing.cpu_count()),
     include_dirs=['/usr/include/eigen3'],  # default overridable by setup.cfg
     cflags=['-O2', '-march=native', '-fopenmp'],  # ditto
     ldflags=['-fopenmp'],  # ditto
