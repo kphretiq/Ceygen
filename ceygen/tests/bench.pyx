@@ -370,7 +370,7 @@ class Bench(CeygenTestCase):
             context.__enter__()
             for i in prange(iterations, nogil=True):
                 lu.det(x)
-            context.__exit()
+            context.__exit__()
 
             self.align = origalign
 
