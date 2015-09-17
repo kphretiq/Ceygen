@@ -8,6 +8,7 @@ from os.path import dirname, join
 import multiprocessing
 
 from Cython.Build import cythonize
+import numpy as np
 
 from support.dist import CeygenDistribution
 
@@ -18,7 +19,8 @@ setup(
     packages=find_packages(),
     distclass=CeygenDistribution,
     ext_modules=cythonize(['ceygen/*.pyx', 'ceygen/tests/*.pyx'],
-                          language='c++', nthreads=multiprocessing.cpu_count()),
+                          language='c++', nthreads=multiprocessing.cpu_count(),
+                          include_path=[np.get_include()]),
     include_dirs=['/usr/include/eigen3'],  # default overridable by setup.cfg
     cflags=['-O2', '-march=native', '-fopenmp'],  # ditto
     ldflags=['-fopenmp'],  # ditto
