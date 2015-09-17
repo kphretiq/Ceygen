@@ -9,7 +9,6 @@ import multiprocessing
 
 from Cython.Build import cythonize
 
-
 from support.dist import CeygenDistribution
 
 with open(join(dirname(__file__),'README.rst')) as readme_file:
@@ -23,7 +22,9 @@ setup(
     include_dirs=['/usr/include/eigen3'],  # default overridable by setup.cfg
     cflags=['-O2', '-march=native', '-fopenmp'],  # ditto
     ldflags=['-fopenmp'],  # ditto
-    install_requires=['Cython>=0.22'],
+    install_requires=['Cython>=0.22', 'numpy'],
+    test_suite='nose.collector',
+    tests_require=['nose'],
     name='Ceygen',
     version="0.4-pre",
     author='Matěj Laitl',

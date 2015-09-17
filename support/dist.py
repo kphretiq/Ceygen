@@ -3,7 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
 
-from distutils.dist import Distribution
+from setuptools.dist import Distribution
 
 from .dist_cmd_build_ext import build_ext
 from .dist_cmd_test import test
