@@ -2,12 +2,13 @@
 # Copyright (c) 2013 Matěj Laitl <matej@laitl.cz>
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
+from __future__ import absolute_import
 
 cimport cython
 
-from eigen_cython cimport *
-from dispatch cimport *
-from dtype cimport vector, matrix
+from .eigen_cython cimport *
+from .dispatch cimport *
+from .dtype cimport vector, matrix, dtype
 
 
 cdef void add_vs_worker(
@@ -19,6 +20,7 @@ cdef void add_vs_worker(
     x.init(x_data, x_shape, x_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x + y[0])
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -42,6 +44,7 @@ cdef void multiply_vs_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x * y[0])
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype[:] multiply_vs(dtype[:] x, dtype y, dtype[:] out = None) nogil:
@@ -63,6 +66,7 @@ cdef void power_vs_worker(
     x.init(x_data, x_shape, x_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x.pow(y[0]))
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -88,6 +92,7 @@ cdef void add_vv_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x + y)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype[:] add_vv(dtype[:] x, dtype[:] y, dtype[:] out = None) nogil:
@@ -111,6 +116,7 @@ cdef void subtract_vv_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x - y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -136,6 +142,7 @@ cdef void multiply_vv_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x * y)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype[:] multiply_vv(dtype[:] x, dtype[:] y, dtype[:] out = None) nogil:
@@ -160,6 +167,7 @@ cdef void divide_vv_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x / y)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype[:] divide_vv(dtype[:] x, dtype[:] y, dtype[:] out = None) nogil:
@@ -181,6 +189,7 @@ cdef void add_ms_worker(
     x.init(x_data, x_shape, x_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x + y[0])
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -206,6 +215,7 @@ cdef void multiply_ms_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x * y[0])
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype[:, :] multiply_ms(dtype[:, :] x, dtype y, dtype[:, :] out = None) nogil:
@@ -229,6 +239,7 @@ cdef void power_ms_worker(
     x.init(x_data, x_shape, x_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x.pow(y[0]))
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -255,6 +266,7 @@ cdef void add_mm_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x + y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -283,6 +295,7 @@ cdef void subtract_mm_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x - y)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype[:, :] subtract_mm(dtype[:, :] x, dtype[:, :] y, dtype[:, :] out = None) nogil:
@@ -310,6 +323,7 @@ cdef void multiply_mm_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x * y)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype[:, :] multiply_mm(dtype[:, :] x, dtype[:, :] y, dtype[:, :] out = None) nogil:
@@ -336,6 +350,7 @@ cdef void divide_mm_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x / y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

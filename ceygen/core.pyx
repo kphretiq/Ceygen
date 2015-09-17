@@ -2,12 +2,13 @@
 # Copyright (c) 2013 Matěj Laitl <matej@laitl.cz>
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
+from __future__ import absolute_import
 
 cimport cython
 
-from eigen_cython cimport *
-from dispatch cimport *
-from dtype cimport vector, matrix
+from .eigen_cython cimport *
+from .dispatch cimport *
+from .dtype cimport vector, matrix, dtype
 
 
 cpdef bint set_is_malloc_allowed(bint allowed) nogil:
@@ -26,6 +27,7 @@ cdef void dot_vv_worker(
     x.init(x_data, x_shape, x_strides)
     y.init(y_data, y_shape, y_strides)
     o[0] = x.dot(y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -48,6 +50,7 @@ cdef void dot_mv_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.noalias_assign(x * y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -73,6 +76,7 @@ cdef void dot_vm_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.noalias_assign(x * y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -101,6 +105,7 @@ cdef void dot_mm_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.noalias_assign(x * y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

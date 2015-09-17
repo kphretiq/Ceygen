@@ -2,12 +2,13 @@
 # Copyright (c) 2013 Matěj Laitl <matej@laitl.cz>
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
+from __future__ import absolute_import
 
 cimport cython
 
-from eigen_cython cimport *
-from dispatch cimport *
-from dtype cimport matrix
+from .eigen_cython cimport *
+from .dispatch cimport *
+from .dtype cimport matrix
 
 
 cdef void cholesky_worker(
@@ -19,6 +20,7 @@ cdef void cholesky_worker(
     x.init(x_data, x_shape, x_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x.llt_matrixL())
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

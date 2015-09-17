@@ -3,7 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
 
-from dtype cimport dtype
+from .dtype cimport dtype
 
 
 cdef dtype[:] add_vs(dtype[:] x, dtype y, dtype[:] out = *) nogil

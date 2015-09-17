@@ -3,8 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
 
-from dtype cimport dtype
-
+from .dtype cimport dtype
 
 cpdef bint set_is_malloc_allowed(bint allowed) nogil
 cpdef tuple eigen_version()
