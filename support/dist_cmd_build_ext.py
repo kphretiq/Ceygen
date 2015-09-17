@@ -6,7 +6,7 @@
 from Cython.Build import cythonize
 
 import os
-from distutils.command.build_ext import build_ext as orig_build_ext
+from setuptools.command.build_ext import build_ext as orig_build_ext
 
 
 class build_ext(orig_build_ext):

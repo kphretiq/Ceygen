@@ -8,8 +8,16 @@ python:
 
 install:
   - sudo apt-get install -qq libeigen3-dev
-  - pip install cython==0.19.2 --use-mirrors
+  - pip install Cython numpy --use-mirrors
   - cython --version
 
 script:
-  - BENCHMARK=1 python setup.py -v test
+  - pip install .
+  - mkdir empty
+  - cd empty
+  - BENCHMARK=1 nosetests ceygen
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+

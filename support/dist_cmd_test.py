@@ -7,8 +7,7 @@
 A custom command for distutils to facilitate stress-testing of Ceygen
 """
 
-from distutils.cmd import Command
-from distutils.errors import DistutilsExecError
+from setuptools import Command
 
 from os.path import abspath, dirname, join
 import sys
@@ -40,6 +39,6 @@ class test(Command):
             if not result.wasSuccessful():
                 raise Exception("There were test failures")
         except Exception as e:
-            raise DistutilsExecError(e)
+            raise e
         finally:
             sys.path = orig_path
