@@ -2,12 +2,13 @@
 # Copyright (c) 2013 Matěj Laitl <matej@laitl.cz>
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
+from __future__ import absolute_import
 
 cimport cython
 
-from eigen_cython cimport *
-from dispatch cimport *
-from dtype cimport matrix
+from .eigen_cython cimport *
+from .dispatch cimport *
+from .dtype cimport matrix, nonint_dtype, dtype
 
 
 cdef void inv_worker(

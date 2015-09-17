@@ -2,12 +2,13 @@
 # Copyright (c) 2013 Matěj Laitl <matej@laitl.cz>
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
+from __future__ import absolute_import
 
 cimport cython
 
-from eigen_cython cimport *
-from dispatch cimport *
-from dtype cimport vector
+from .eigen_cython cimport *
+from .dispatch cimport *
+from .dtype cimport vector, dtype
 
 
 cdef void sum_v_worker(
