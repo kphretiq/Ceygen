@@ -18,6 +18,7 @@ cdef void sum_v_worker(
     x.init(x_data, x_shape, x_strides)
     o[0] = x.sum()
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype sum_v(dtype[:] x) nogil except *:
@@ -33,6 +34,7 @@ cdef void sum_m_worker(
     cdef Array2DMap[dtype, XMatrixContiguity] x
     x.init(x_data, x_shape, x_strides)
     o[0] = x.sum()
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -51,6 +53,7 @@ cdef void rowwise_sum_worker(
     x.init(x_data, x_shape, x_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x.rowwise_sum())
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -72,6 +75,7 @@ cdef void colwise_sum_worker(
     x.init(x_data, x_shape, x_strides)
     o.init(o_data, o_shape, o_strides)
     o.assign(x.colwise_sum())
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

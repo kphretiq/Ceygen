@@ -25,8 +25,10 @@ cdef inline str get_format(dtype *dummy):
     if dtype is double:
         return 'd'
 
+
 cdef dtype[:] vector(int size, dtype *like) with gil:
     return view.array(shape=(size,), itemsize=sizeof(dtype), format=get_format(like))
+
 
 cdef dtype[:, :] matrix(int rows, int cols, dtype *like) with gil:
     return view.array(shape=(rows, cols), itemsize=sizeof(dtype), format=get_format(like))

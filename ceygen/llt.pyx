@@ -21,6 +21,7 @@ cdef void cholesky_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign(x.llt_matrixL())
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef nonint_dtype[:, :] cholesky(nonint_dtype[:, :] x, nonint_dtype[:, :] out = None) nogil:

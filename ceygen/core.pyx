@@ -28,6 +28,7 @@ cdef void dot_vv_worker(
     y.init(y_data, y_shape, y_strides)
     o[0] = x.dot(y)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef dtype dot_vv(dtype[:] x, dtype[:] y) nogil except *:
@@ -49,6 +50,7 @@ cdef void dot_mv_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.noalias_assign(x * y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -74,6 +76,7 @@ cdef void dot_vm_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.noalias_assign(x * y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -102,6 +105,7 @@ cdef void dot_mm_worker(
     y.init(y_data, y_shape, y_strides)
     o.init(o_data, o_shape, o_strides)
     o.noalias_assign(x * y)
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

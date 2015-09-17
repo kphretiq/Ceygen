@@ -21,6 +21,7 @@ cdef void inv_worker(
     o.init(o_data, o_shape, o_strides)
     o.assign_inverse(x)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef nonint_dtype[:, :] inv(nonint_dtype[:, :] x, nonint_dtype[:, :] out = None) nogil:
@@ -43,6 +44,7 @@ cdef void iinv_worker(
     # why this doesn't exhibit aliasing problems?
     x.assign_inverse(x)
 
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef bint iinv(nonint_dtype[:, :] x) nogil except False:
@@ -59,6 +61,7 @@ cdef void det_worker(
     cdef MatrixMap[dtype, XMatrixContiguity] x
     x.init(x_data, x_shape, x_strides)
     o[0] = x.determinant()
+
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
