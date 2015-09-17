@@ -3,36 +3,23 @@
 # Copyright (c) 2013 Matěj Laitl <matej@laitl.cz>
 # Distributed under the terms of the GNU General Public License v2 or any
 # later version of the license, at your option.
-
-from Cython.Build.Dependencies import create_extension_list
-
-from distutils.core import setup
-from os.path import basename, dirname, join, splitext
-import re
+from Cython.Build import cythonize
+from setuptools import setup, find_packages
+from os.path import dirname, join
 
 from support.dist import CeygenDistribution
 
-
-modules = create_extension_list(['ceygen/*.pyx', 'ceygen/tests/*.pyx'])
-for module in modules:
-    module.language = "c++"
-
-# list of pxd files that belong to a corresponding module directly in the ceygen package
-ceygen_pxds = [splitext(basename(m.sources[0]))[0] + '.pxd' for m in modules if re.match('ceygen\.[^.]*$', m.name)]
-
-with open(join(dirname(__file__) ,'README.rst')) as file:
-    long_description = file.read()
+with open(join(dirname(__file__),'README.rst')) as readme_file:
+    long_description = readme_file.read()
 
 setup(
-    packages=['ceygen', 'ceygen.tests'],
-    package_data={'ceygen': ceygen_pxds},
+    packages=find_packages(),
     distclass=CeygenDistribution,
-    ext_modules=modules,
+    ext_modules=cythonize(['ceygen/*.pyx', 'ceygen/tests/*.pyx'],
+                          language='c++'),
     include_dirs=['/usr/include/eigen3'],  # default overridable by setup.cfg
     cflags=['-O2', '-march=native', '-fopenmp'],  # ditto
     ldflags=['-fopenmp'],  # ditto
-
-    # meta-data; see http://docs.python.org/distutils/setupscript.html#additional-meta-data
     name='Ceygen',
     version="0.4-pre",
     author='Matěj Laitl',
