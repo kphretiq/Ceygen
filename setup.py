@@ -19,8 +19,7 @@ setup(
     packages=find_packages(),
     distclass=CeygenDistribution,
     ext_modules=cythonize(['ceygen/*.pyx', 'ceygen/tests/*.pyx'],
-                          language='c++', nthreads=multiprocessing.cpu_count(),
-                          include_path=[np.get_include()]),
+                          language='c++', nthreads=multiprocessing.cpu_count()),
     include_dirs=['/usr/include/eigen3'],  # default overridable by setup.cfg
     cflags=['-O2', '-march=native', '-fopenmp'],  # ditto
     ldflags=['-fopenmp'],  # ditto

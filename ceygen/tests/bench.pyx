@@ -4,16 +4,13 @@
 # later version of the license, at your option.
 #cython: language=c++
 from __future__ import absolute_import, print_function
-from cython.parallel cimport prange
-
-import numpy as np
-cimport numpy as np
-
-
 import os
 import pickle
 import subprocess
 from time import time
+
+from cython.parallel cimport prange
+import numpy as np
 
 from .support import CeygenTestCase, benchmark
 from .. cimport core as c
