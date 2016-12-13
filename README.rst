@@ -2,6 +2,15 @@
 Ceygen
 ======
 
+WARNING
+=======
+
+This is *not* the Cygen_ you are looking for! This is a fork of Dapids_ fork of strohel's original. There are some changes in the **setuptools** branch relating to issue_ 3 that have been hanging out for over a year at the time of this writing. This build seems to work, but it would behoove you to wait until the actual author fixes it, rather than using my merge. Seriously.
+
+.. _Dapids: https://github.com/Dapid/Ceygen
+.. _Cygen: https://github.com/strohel/Ceygen
+.. _issue: https://github.com/strohel/Ceygen/issues/3
+
 About
 =====
 
